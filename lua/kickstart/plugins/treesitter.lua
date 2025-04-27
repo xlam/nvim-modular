@@ -16,6 +16,15 @@ return {
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<Leader>is', -- set to `false` to disable one of the mappings
+          node_incremental = '<Leader>ii',
+          scope_incremental = '<Leader>ic',
+          node_decremental = '<Leader>id',
+        },
+      },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
