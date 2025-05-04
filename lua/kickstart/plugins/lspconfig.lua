@@ -193,20 +193,42 @@ return {
             },
           },
         },
-        pylsp = {
+        bashls = {},
+        taplo = {},
+        pyright = {
+          on_attach = function(client, bufnr)
+            -- Отключаем форматирование у pyright
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
           settings = {
-            pylsp = {
-              plugins = {
-                autopep8 = { enabled = false },
-                flake8 = { enabled = false },
-                pycodestyle = { enabled = false },
-                pyflakes = { enabled = false },
-                pylint = { enabled = false },
-                yapf = { enabled = false },
+            pyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = 'basic',
               },
             },
           },
         },
+        -- pylsp = {
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         autopep8 = { enabled = false },
+        --         flake8 = { enabled = false },
+        --         pycodestyle = { enabled = false },
+        --         pyflakes = { enabled = false },
+        --         pylint = { enabled = false },
+        --         yapf = { enabled = false },
+        --         pylsp_mypy = { enabled = true },
+        --       },
+        --     },
+        --   },
+        -- },
       }
 
       -- Ensure the servers and tools above are installed

@@ -34,6 +34,10 @@ return {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+        toml = { 'pyproject-fmt' },
+        bash = { 'beautysh' },
+        sh = { 'beautysh' },
+        zsh = { 'beautysh' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
