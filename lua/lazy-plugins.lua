@@ -35,7 +35,14 @@ require('lazy').setup({
 
   require 'kickstart/plugins/blink-cmp',
 
-  require 'kickstart/plugins/tokyonight',
+  require 'kickstart/plugins/astrotheme',
+  -- require 'kickstart/plugins/kanagawa',
+  -- require 'kickstart/plugins/mellifluous',
+  -- require 'kickstart/plugins/onedarkpro',
+  -- require 'kickstart/plugins/mellow',
+  -- require 'kickstart/plugins/nordic',
+  -- require 'kickstart/plugins/tokyonight',
+  -- require 'kickstart/plugins/vague',
 
   require 'kickstart/plugins/todo-comments',
 
