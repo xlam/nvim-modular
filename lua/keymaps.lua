@@ -123,4 +123,16 @@ vim.keymap.set('v', 'p', '"_dP', opts)
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Move lines up/down
+-- Normal mode: с форматированием (==)
+vim.keymap.set('n', '<C-Down>', ':m .+1<CR>==', opts)
+vim.keymap.set('n', '<C-Up>', ':m .-2<CR>==', opts)
+
+-- Visual mode: перемещаем ВЕСЬ БЛОК и сохраняем выделение
+vim.keymap.set('x', '<C-Down>', ":'<,'>m '>+1<CR>gv=gv", opts)
+vim.keymap.set('x', '<C-Up>', ":'<,'>m '<-2<CR>gv=gv", opts)
+
+-- Insert (без ==a в тексте!)
+vim.keymap.set('i', '<C-Down>', '<Esc>:m .+1<CR>==gi', opts)
+vim.keymap.set('i', '<C-Up>', '<Esc>:m .-2<CR>==gi', opts)
 -- vim: ts=2 sts=2 sw=2 et
