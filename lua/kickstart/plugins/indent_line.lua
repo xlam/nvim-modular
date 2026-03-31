@@ -1,17 +1,21 @@
+-- Add indentation guides even on blank lines
+
+---@module 'lazy'
+---@type LazySpec
 return {
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {
+  'lukas-reineke/indent-blankline.nvim',
+  -- Enable `lukas-reineke/indent-blankline.nvim`
+  -- See `:help ibl`
+  main = 'ibl',
+  ---@module 'ibl'
+  ---@type ibl.config
+  opts = {
       indent = {
-        char = '┊',
+          char = '┊',
       },
       scope = {
-        show_start = false,
-        show_end = false,
+          show_start = false,
+          show_end = false,
       },
-    },
   },
 }
