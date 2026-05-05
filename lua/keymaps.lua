@@ -46,6 +46,45 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Toggle terminal with Ctrl+\
+local terminal_buf = nil
+local function toggle_terminal()
+  -- Find existing terminal window
+  local term_win = nil
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.bo[buf].buftype == 'terminal' then
+      term_win = win
+      break
+    end
+  end
+
+  if term_win then
+    local is_only = #vim.api.nvim_tabpage_list_wins(0) == 1
+    if is_only then
+      vim.cmd 'b#' -- switch to previous buffer, terminal closes
+    else
+      vim.api.nvim_win_hide(term_win) -- hide terminal, keep process alive
+    end
+    return
+  end
+
+  -- Restore or create new terminal
+  if terminal_buf and vim.api.nvim_buf_is_valid(terminal_buf) then
+    vim.cmd 'botright split'
+    vim.api.nvim_win_set_buf(0, terminal_buf)
+  else
+    vim.cmd 'botright split'
+    terminal_buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_win_set_buf(0, terminal_buf)
+    vim.fn.termopen(vim.o.shell)
+  end
+  vim.cmd.startinsert()
+end
+
+vim.keymap.set('n', '<C-\\>', toggle_terminal, { desc = 'Toggle terminal window' })
+vim.keymap.set('t', '<C-\\>', '<Nop>', { desc = 'No-op in terminal mode — press Escape first' })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
