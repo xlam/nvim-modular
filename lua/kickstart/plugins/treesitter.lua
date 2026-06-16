@@ -3,8 +3,15 @@
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    config = function(_, opts)
+      -- Neovim 0.12 + nvim-treesitter main branch
+      -- The 'nvim-treesitter.configs' module is gone.
+      -- Highlighting is now mostly native or handled automatically.
+      -- If you want to install parsers, you can use :TSInstall or the new API.
+      require('nvim-treesitter').setup(opts)
+    end,
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
